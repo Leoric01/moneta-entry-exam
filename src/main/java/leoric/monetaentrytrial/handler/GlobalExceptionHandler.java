@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(CustomProblemException.class)
-    public ResponseEntity<Result<Void>> handleUnauthorizedAccountAccessException(CustomProblemException ex) {
+    public ResponseEntity<Result<Void>> handleProblemBasedOnBusinessCasesException(CustomProblemException ex) {
         log.warn("Whatever the problem : {}", ex.getMessage());
         return ResponseEntity
                 .status(FORBIDDEN)

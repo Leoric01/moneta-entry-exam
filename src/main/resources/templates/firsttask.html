@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Moneta-first-task</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<form th:action="@{/ui/first/add}" th:object="${textin}" method="post">
+    <p>Content: </p>
+    <label>Text input</label>
+    <input type="text" th:field="*{input}"><br>
+    <input type="submit" value="Modify your text!"/>
+</form>
+</body>
+</html>

@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReversedText {
-    private String modifiedText;
+public class TicketDtoResponse {
+    private String ticketInformation;
 }

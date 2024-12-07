@@ -1,10 +1,10 @@
 package leoric.monetaentrytrial.services;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
-import leoric.monetaentrytrial.dtos.responses.ReversedText;
+import leoric.monetaentrytrial.dtos.responses.ModifiedText;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface TransformTextService {
-    ReversedText reverseAndModify(TaskOneInput input);
+    ModifiedText reverseAndModify(TaskOneInput input);
 }

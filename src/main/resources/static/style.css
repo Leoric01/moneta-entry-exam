@@ -1,0 +1,5 @@
+body {
+    /* This is just to test if css file is correctly linked, not a real styling */
+    background-color: coral;
+    display: block;
+}

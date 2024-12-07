@@ -1,11 +1,12 @@
 package leoric.monetaentrytrial.dtos.responses;
 
+import leoric.monetaentrytrial.handler.BusinessErrorCodes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Example of unified format of a response in larger rest app
+// Example of unified format of a response in larger restcontrollers app
 @Data
 @NoArgsConstructor
 @Builder
@@ -30,6 +31,14 @@ public class Result<T> {
                 .success(false)
                 .code(code)
                 .message(message)
+                .build();
+    }
+
+    public static <T> Result<T> failure(BusinessErrorCodes errorCode) {
+        return Result.<T>builder()
+                .success(false)
+                .code(errorCode.getCode())
+                .message(errorCode.getDescription())
                 .build();
     }
 }

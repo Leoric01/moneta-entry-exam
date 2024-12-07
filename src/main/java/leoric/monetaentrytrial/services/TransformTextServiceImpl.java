@@ -2,7 +2,7 @@ package leoric.monetaentrytrial.services;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
 import leoric.monetaentrytrial.dtos.responses.ModifiedText;
-import leoric.monetaentrytrial.models.TOne;
+import leoric.monetaentrytrial.models.FirstTask;
 import leoric.monetaentrytrial.repositories.TOneRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +19,8 @@ public class TransformTextServiceImpl implements TransformTextService {
     private final TOneRepository tOneRepository;
     @Override
     public ModifiedText reverseAndModify(TaskOneInput input) {
-        TOne tOne = new TOne();
-        tOne.setInput(input.getInput());
+        FirstTask firstTask = new FirstTask();
+        firstTask.setInput(input.getInput());
         // replace narusuje puvodni umisteni samohlasek ale na prikladu v zadani to vychazelo takto, bud je tedy spatne
         // priklad s resenim nebo formulace podminky(kde se původně vyskytovala písmena...). Konkretne:
 
@@ -49,13 +49,13 @@ public class TransformTextServiceImpl implements TransformTextService {
         }
         ModifiedText reversedAndModifiedText = new ModifiedText();
         reversedAndModifiedText.setModifiedText(reversed.toString());
-        tOne.setOutput(reversedAndModifiedText.getModifiedText());
-        tOneRepository.save(tOne);
+        firstTask.setOutput(reversedAndModifiedText.getModifiedText());
+        tOneRepository.save(firstTask);
         return reversedAndModifiedText;
     }
 
     @Override
-    public List<TOne> fetchAll() {
+    public List<FirstTask> fetchAll() {
         return tOneRepository.findAll();
     }
 

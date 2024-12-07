@@ -2,7 +2,7 @@ package leoric.monetaentrytrial.services;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
 import leoric.monetaentrytrial.dtos.responses.ModifiedText;
-import leoric.monetaentrytrial.models.TOne;
+import leoric.monetaentrytrial.models.FirstTask;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,5 +11,5 @@ import java.util.List;
 public interface TransformTextService {
     ModifiedText reverseAndModify(TaskOneInput input);
 
-    List<TOne> fetchAll();
+    List<FirstTask> fetchAll();
 }

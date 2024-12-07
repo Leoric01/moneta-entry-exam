@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TOne {
+public class FirstTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+<div th:replace="fragments/navTop :: toplinks"></div>
 <table>
     <th>Id</th>
     <th>Input</th>
     <th>Output</th>
-    <tr th:each="tone :${list}" th:object="${tone}">
+    <tr th:each="firsttask :${list}" th:object="${firsttask}">
         <td th:text="*{id}"/>
         <td th:text="*{input}"/>
         <td th:text="*{output}"/>

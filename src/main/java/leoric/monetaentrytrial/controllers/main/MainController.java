@@ -1,8 +1,7 @@
 package leoric.monetaentrytrial.controllers.main;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
-import leoric.monetaentrytrial.dtos.responses.ModifiedText;
-import leoric.monetaentrytrial.models.TOne;
+import leoric.monetaentrytrial.models.FirstTask;
 import leoric.monetaentrytrial.services.ModifyIntegerService;
 import leoric.monetaentrytrial.services.TicketService;
 import leoric.monetaentrytrial.services.TransformTextService;
@@ -34,7 +33,7 @@ public class MainController {
 
     @GetMapping("/first")
     public String firstPage(Model model) {
-        List<TOne> list = transformTextService.fetchAll();
+        List<FirstTask> list = transformTextService.fetchAll();
         model.addAttribute("textin", new TaskOneInput());
         model.addAttribute("list", list);
         return "firsttask";
@@ -42,7 +41,7 @@ public class MainController {
 
     @PostMapping("/first/add")
     public String addUser(@ModelAttribute TaskOneInput textin) {
-        ModifiedText output = transformTextService.reverseAndModify(textin);
+        transformTextService.reverseAndModify(textin);
         return "redirect:/ui/first";
     }
 

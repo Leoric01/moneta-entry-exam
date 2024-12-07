@@ -2,20 +2,25 @@ package leoric.monetaentrytrial.services;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
 import leoric.monetaentrytrial.dtos.responses.ModifiedText;
+import leoric.monetaentrytrial.models.TOne;
+import leoric.monetaentrytrial.repositories.TOneRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class TransformTextServiceImpl implements TransformTextService {
+    private final TOneRepository tOneRepository;
     @Override
     public ModifiedText reverseAndModify(TaskOneInput input) {
-
+        TOne tOne = new TOne();
+        tOne.setInput(input.getInput());
         // replace narusuje puvodni umisteni samohlasek ale na prikladu v zadani to vychazelo takto, bud je tedy spatne
         // priklad s resenim nebo formulace podminky(kde se původně vyskytovala písmena...). Konkretne:
 
@@ -44,7 +49,14 @@ public class TransformTextServiceImpl implements TransformTextService {
         }
         ModifiedText reversedAndModifiedText = new ModifiedText();
         reversedAndModifiedText.setModifiedText(reversed.toString());
+        tOne.setOutput(reversedAndModifiedText.getModifiedText());
+        tOneRepository.save(tOne);
         return reversedAndModifiedText;
+    }
+
+    @Override
+    public List<TOne> fetchAll() {
+        return tOneRepository.findAll();
     }
 
     private boolean isVowel(char c) {

@@ -6,10 +6,20 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+<table>
+    <th>Id</th>
+    <th>Input</th>
+    <th>Output</th>
+    <tr th:each="tone :${list}" th:object="${tone}">
+        <td th:text="*{id}"/>
+        <td th:text="*{input}"/>
+        <td th:text="*{output}"/>
+    </tr>
+</table>
 <form th:action="@{/ui/first/add}" th:object="${textin}" method="post">
-    <p>Content: </p>
-    <label>Text input</label>
-    <input type="text" th:field="*{input}"><br>
+    <label>Text input
+        <input type="text" th:field="*{input}"><br>
+    </label>
     <input type="submit" value="Modify your text!"/>
 </form>
 </body>

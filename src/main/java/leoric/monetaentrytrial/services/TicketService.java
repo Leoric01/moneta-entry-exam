@@ -14,4 +14,6 @@ public interface TicketService {
     void deleteLastTicket();
 
     List<TicketDtoResponse> getAll();
+
+    TicketDtoResponse getCurrentTicketOrNull();
 }

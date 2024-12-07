@@ -43,6 +43,14 @@ public class TicketServiceImpl implements TicketService {
         return convertTicketToTicketDto(ticket);
     }
 
+    public TicketDtoResponse getCurrentTicketOrNull() {
+        try {
+            return getCurrentTicket();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public void deleteLastTicket() {
         Optional<Ticket> firstTicket = ticketRepository.findByPosition(0);
         if (firstTicket.isEmpty()) {

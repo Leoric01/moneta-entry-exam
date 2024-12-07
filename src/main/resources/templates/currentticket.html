@@ -12,7 +12,8 @@
 <table>
     <th>Current Ticket</th>
     <tr>
-        <td th:text="${ticket.ticketInformation}"></td>
+        <td th:if="${ticket != null}" th:text="${ticket.ticketInformation}"></td>
+        <td th:if="${ticket == null}" th:text="${message}"></td>
     </tr>
 </table>
 </body>

@@ -82,9 +82,13 @@ public class MainController {
     }
 
     @GetMapping("/third/current")
-    public String thirdPageCurrentTicket(Model model) throws Exception {
-        TicketDtoResponse ticket = ticketService.getCurrentTicket();
-        model.addAttribute("ticket", ticket);
+    public String thirdPageCurrentTicket(Model model) {
+        TicketDtoResponse ticket = ticketService.getCurrentTicketOrNull();
+        if (ticket == null) {
+            model.addAttribute("message", "No current active tickets");
+        } else {
+            model.addAttribute("ticket", ticket);
+        }
         return "currentticket";
     }
 

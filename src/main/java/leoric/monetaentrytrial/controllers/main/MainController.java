@@ -2,12 +2,14 @@ package leoric.monetaentrytrial.controllers.main;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
 import leoric.monetaentrytrial.dtos.requests.TaskTwoInput;
+import leoric.monetaentrytrial.dtos.responses.TicketDtoResponse;
 import leoric.monetaentrytrial.models.FirstTask;
 import leoric.monetaentrytrial.models.SecondTask;
 import leoric.monetaentrytrial.services.ModifyIntegerService;
 import leoric.monetaentrytrial.services.TicketService;
 import leoric.monetaentrytrial.services.TransformTextService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -27,7 +29,8 @@ public class MainController {
     private final ModifyIntegerService modifyIntegerService;
     private final TransformTextService transformTextService;
     private final TicketService ticketService;
-
+    @Value("${ticket.default-number:1244}")
+    private Integer ticketDefaultNumber;
     @GetMapping
     public String mainPage() {
         return "mainPage";
@@ -61,7 +64,21 @@ public class MainController {
         return "redirect:/ui/second";
     }
     @GetMapping("/third")
-    public String thirdPage(Model model) {
-        return "mainPage";
+    public String thirdPage() {
+        return "thirdtask";
+    }
+
+    @GetMapping("/third/all")
+    public String thirdPageTickets(Model model) {
+        List<TicketDtoResponse> tickets = ticketService.getAll();
+        model.addAttribute("tickets", tickets);
+        return "tickets";
+    }
+
+    @GetMapping("/third/generate")
+    public String thirdPageGenerateTicket(Model model) throws Exception {
+        TicketDtoResponse ticket = ticketService.generateTicket(ticketDefaultNumber);
+        model.addAttribute("ticket", ticket);
+        return "generateticket";
     }
 }

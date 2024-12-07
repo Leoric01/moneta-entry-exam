@@ -25,7 +25,7 @@ public class TicketServiceImpl implements TicketService {
     public TicketDtoResponse generateTicket(Integer defaultTicketNumber) throws Exception {
         int position = (int) ticketRepository.count();
         int ticketNumber = ticketRepository.findFirstByOrderByIdDesc()
-                .map(Ticket::getTicketNumber)
+                .map(ticket -> ticket.getTicketNumber() + 1)
                 .orElse(defaultTicketNumber);
 
         Ticket ticket = new Ticket();

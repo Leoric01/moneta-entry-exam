@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,7 @@ public class MainController {
     private final TicketService ticketService;
     @Value("${ticket.default-number:1244}")
     private Integer ticketDefaultNumber;
+
     @GetMapping
     public String mainPage() {
         return "mainPage";
@@ -63,6 +61,7 @@ public class MainController {
         modifyIntegerService.modifyDigits(intIn);
         return "redirect:/ui/second";
     }
+
     @GetMapping("/third")
     public String thirdPage() {
         return "thirdtask";
@@ -75,10 +74,23 @@ public class MainController {
         return "tickets";
     }
 
-    @GetMapping("/third/generate")
+    @PostMapping("/third/generate")
     public String thirdPageGenerateTicket(Model model) throws Exception {
         TicketDtoResponse ticket = ticketService.generateTicket(ticketDefaultNumber);
         model.addAttribute("ticket", ticket);
         return "generateticket";
+    }
+
+    @GetMapping("/third/current")
+    public String thirdPageCurrentTicket(Model model) throws Exception {
+        TicketDtoResponse ticket = ticketService.getCurrentTicket();
+        model.addAttribute("ticket", ticket);
+        return "currentticket";
+    }
+
+    @DeleteMapping("/third/delete")
+    public String thirdPageDeleteTicket() {
+        ticketService.deleteLastTicket();
+        return "redirect:/ui/third/all";
     }
 }

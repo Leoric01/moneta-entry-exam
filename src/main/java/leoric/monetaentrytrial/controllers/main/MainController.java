@@ -1,7 +1,9 @@
 package leoric.monetaentrytrial.controllers.main;
 
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
+import leoric.monetaentrytrial.dtos.requests.TaskTwoInput;
 import leoric.monetaentrytrial.models.FirstTask;
+import leoric.monetaentrytrial.models.SecondTask;
 import leoric.monetaentrytrial.services.ModifyIntegerService;
 import leoric.monetaentrytrial.services.TicketService;
 import leoric.monetaentrytrial.services.TransformTextService;
@@ -27,7 +29,7 @@ public class MainController {
     private final TicketService ticketService;
 
     @GetMapping
-    public String mainPage(Model model) {
+    public String mainPage() {
         return "mainPage";
     }
 
@@ -40,16 +42,24 @@ public class MainController {
     }
 
     @PostMapping("/first/add")
-    public String addUser(@ModelAttribute TaskOneInput textin) {
+    public String addNewTextToTransform(@ModelAttribute TaskOneInput textin) {
         transformTextService.reverseAndModify(textin);
         return "redirect:/ui/first";
     }
 
     @GetMapping("/second")
     public String secondPage(Model model) {
-        return "mainPage";
+        List<SecondTask> list = modifyIntegerService.fetchAll();
+        model.addAttribute("intIn", new TaskTwoInput());
+        model.addAttribute("list", list);
+        return "secondtask";
     }
 
+    @PostMapping("/second/add")
+    public String addNewIntToTransform(@ModelAttribute TaskTwoInput intIn) {
+        modifyIntegerService.modifyDigits(intIn);
+        return "redirect:/ui/second";
+    }
     @GetMapping("/third")
     public String thirdPage(Model model) {
         return "mainPage";

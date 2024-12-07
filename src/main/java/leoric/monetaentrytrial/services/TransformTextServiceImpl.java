@@ -3,7 +3,7 @@ package leoric.monetaentrytrial.services;
 import leoric.monetaentrytrial.dtos.requests.TaskOneInput;
 import leoric.monetaentrytrial.dtos.responses.ModifiedText;
 import leoric.monetaentrytrial.models.FirstTask;
-import leoric.monetaentrytrial.repositories.TOneRepository;
+import leoric.monetaentrytrial.repositories.FirstTaskRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class TransformTextServiceImpl implements TransformTextService {
-    private final TOneRepository tOneRepository;
+    private final FirstTaskRepository firstTaskRepository;
     @Override
     public ModifiedText reverseAndModify(TaskOneInput input) {
         FirstTask firstTask = new FirstTask();
@@ -50,13 +50,13 @@ public class TransformTextServiceImpl implements TransformTextService {
         ModifiedText reversedAndModifiedText = new ModifiedText();
         reversedAndModifiedText.setModifiedText(reversed.toString());
         firstTask.setOutput(reversedAndModifiedText.getModifiedText());
-        tOneRepository.save(firstTask);
+        firstTaskRepository.save(firstTask);
         return reversedAndModifiedText;
     }
 
     @Override
     public List<FirstTask> fetchAll() {
-        return tOneRepository.findAll();
+        return firstTaskRepository.findAll();
     }
 
     private boolean isVowel(char c) {

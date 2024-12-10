@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Moneta-first-task</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div th:replace="fragments/navTop :: toplinks"></div>
+<table>
+    <th>Id</th>
+    <th>Input</th>
+    <th>Output</th>
+    <tr th:each="firsttask :${list}" th:object="${firsttask}">
+        <td th:text="*{id}"/>
+        <td th:text="*{input}"/>
+        <td th:text="*{output}"/>
+    </tr>
+</table>
+<form th:action="@{/ui/first/add}" th:object="${textin}" method="post">
+    <label>Text input
+        <input type="text" th:field="*{input}"><br>
+    </label>
+    <input type="submit" value="Modify your text!"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Moneta-third-task</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div th:replace="fragments/navTop :: toplinks"></div>
+<br>
+<div th:replace="fragments/ticketoptions :: options"></div>
+<table>
+    <th>Current Ticket</th>
+    <tr>
+        <td th:if="${ticket != null}" th:text="${ticket.ticketInformation}"></td>
+        <td th:if="${ticket == null}" th:text="${message}"></td>
+    </tr>
+</table>
+</body>
+</html>

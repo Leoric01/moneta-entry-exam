@@ -1,0 +1,19 @@
+<div th:fragment="options">
+    <div>
+        <button><a th:href="'/ui/third/all'">All tickets</a></button>
+    </div>
+    <div>
+        <form th:action="@{/ui/third/generate}" method="post">
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    <div>
+        <button><a th:href="'/ui/third/current'">Get Current</a></button>
+    </div>
+    <div>
+        <form th:action="@{/ui/third/delete}" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</div>

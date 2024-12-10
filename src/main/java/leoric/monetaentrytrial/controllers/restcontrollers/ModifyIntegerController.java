@@ -25,7 +25,7 @@ public class ModifyIntegerController {
     private final ModifyIntegerService modifyIntegerService;
 
     @PostMapping("/integer")
-    public ResponseEntity<Result<ModifiedInt>> reverseAndModifyText(@Valid @RequestBody TaskTwoInput input) {
+    public ResponseEntity<Result<ModifiedInt>> modifyInteger(@Valid @RequestBody TaskTwoInput input) {
         try {
             ModifiedInt output = modifyIntegerService.modifyDigits(input);
             return ResponseEntity.ok(

@@ -19,7 +19,7 @@
 </table>
 <form th:action="@{/ui/second/add}" th:object="${intIn}" method="post">
     <label>Integer input
-        <input type="text" th:field="*{inputInt}"><br>
+        <input type="number" th:field="*{inputInt}" required><br>
     </label>
     <input type="submit" value="Modify your integer!"/>
 </form>

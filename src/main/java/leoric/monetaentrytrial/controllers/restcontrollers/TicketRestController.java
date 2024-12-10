@@ -19,7 +19,8 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/task-three")
 public class TicketRestController {
     private final TicketService ticketService;
-
+    // default value in application.properties, if we want to start from 0, but keep 4 digit format, id probably go
+    // for formatter
     @Value("${ticket.default-number:1244}")
     private Integer ticketDefaultNumber;
 

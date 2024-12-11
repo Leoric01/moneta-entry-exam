@@ -13,15 +13,15 @@ Transformaci provede tak, že textu otočí pořadí písmen (tedy přečte ho o
 
 Např:
 
-Ahoj, jak se máš?
+`Ahoj, jak se máš?`
 
-?šÁm es kaj ,jOha
+`?šÁm es kaj ,jOha`
 
  
 
-Je     mi   fajn.
+`Je     mi   fajn.`
 
-.NjaF iM ej
+`.NjaF iM ej`
 
  
 
